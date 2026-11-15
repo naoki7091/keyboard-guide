@@ -1,7 +1,7 @@
 {
   "design_snapshot_date": "2026-11-15",
-  "checked_at_utc": "2026-11-15T05:11:51.177098+00:00",
-  "static_checks_passed": 3242,
+  "checked_at_utc": "2026-11-15T11:05:29.477094+00:00",
+  "static_checks_passed": 3114,
   "static_verification_passed": true,
   "electrical_boards": 4,
   "mechanical_plates": 2,
@@ -15,9 +15,18 @@
     "main_spacer_passage_mm": 4.4,
     "assumed_spacer_outer_diameter_mm": 4
   },
-  "note": "Ideal matrix/copper connectivity and static mechanical checks; not BLE, analog power or hardware testing.",
+  "variant": "musen_compact",
+  "main_bottom_face_gap_mm": 4.5,
+  "nominal_height_estimate_mm": 33.55,
+  "real_arm_targets_built": 3,
+  "firmware_checks": 272,
+  "hardware_tested": false,
+  "radio_tested": false,
+  "switching_transient_completed": false,
+  "fabrication_release": false,
+  "note": "Physical copper/matrix and static mechanics; real ARM builds and host debounce tests. Power analytical bounds pass; TI transient run uncompleted; hardware/radio/fit pending.",
   "unverified": [
-    "BLE/dongle firmware build and over-the-air operation",
+    "BLE over-the-air operation (three ARM firmware targets built separately)",
     "analog boost startup, stability, ripple and USB transitions",
     "actual cell current, usable capacity and lifetime",
     "manufactured assembly and switch contact bounce"
