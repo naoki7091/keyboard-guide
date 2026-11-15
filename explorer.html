@@ -15,7 +15,7 @@
 </head>
 <body class="explorer-page">
   <a class="skip" href="#viewer">3Dビューへ移動</a>
-  <header class="e-header"><a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">▦</span> SPLIT / WIRELESS</a><nav aria-label="ページ内ナビゲーション"><a href="#viewer">3Dで見る</a><a href="#parts">使用部品</a><a href="index.html">組み立てガイドへ ↗</a></nav></header>
+  <header class="e-header"><a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">▦</span> SPLIT / WIRELESS</a><nav aria-label="ページ内ナビゲーション"><a href="#viewer">3Dで見る</a><a href="#dimensions">厚さ・寸法</a><a href="#parts">使用部品</a><a href="index.html">組み立てガイドへ ↗</a></nav></header>
   <main>
     <section class="e-intro e-wrap"><div><p class="eyebrow">THE FINISHED KEYBOARD, INSIDE OUT</p><h1>完成形から、<br class="e-mobile-br">中の部品まで。</h1><p class="e-lead">キーキャップを付けた姿を、好きな角度から。<br>回して、裏返して、層ごとのつながりを見てみましょう。</p></div><div class="e-intro-facts"><span><b>63</b>keys / 左29・右34</span><span><b>3</b>枚のプレート・基板</span><span><b>360°</b>回転・拡大・部品選択</span></div></section>
     <section class="e-workbench e-wrap" id="viewer" aria-label="キーボードの3Dビュー">
@@ -26,6 +26,40 @@
       </div>
       <div class="e-shortcuts" aria-label="よく見る部品"><span>ここを見たい</span><button data-focus="battery-case">ふた付き電池ケース ↗</button><button data-focus="mcu">マイコン ↗</button><button data-focus="header-sockets">上下をつなぐ端子 ↗</button><button data-focus="key-sockets">キーソケット ↗</button></div>
       <details class="e-dimensions"><summary>モデルの寸法条件と、まだ決まっていない部分</summary><p>各基板は145.35×107.25mm。メイン下面〜ボトム上面は15mm。表示用に基板・トップ厚を1.6mm、メイン上面〜トップ下面を3.4mmと仮定しています。連続スペーサーは外径4mm・表示上の全長20mmですが、実物の全長とねじ長はプレート厚・スイッチ保持高さを決めて選定します。キーキャップの形状・外装ケース・スタビライザーの適合・ゴム足の圧縮量も未確定です。</p><p>裏面の電池ケースはBS-24-B4AA014、高さ8.6mm。ふたを開いた状態は交換手順を説明するための模式表現です。3Dモデルは製造用CADや干渉検査用の精密モデルではありません。</p><p>キーボード操作：3Dビューにフォーカスして矢印キーで回転、＋/−で拡大縮小、Homeで初期位置へ。部品一覧からも部品を選べます。</p></details>
+    </section>
+    <section class="e-size-section e-wrap" id="dimensions" aria-labelledby="dimensions-heading">
+      <div class="e-size-heading"><p class="eyebrow">HOW THICK IS IT?</p><h2 id="dimensions-heading">完成すると、どれくらいの厚さ？</h2><p>左右とも同じ高さ。足を含めた、机からキーキャップ上面までの見積もりです。</p></div>
+      <div class="e-size-grid">
+        <div class="e-size-visual">
+          <div class="e-height-hero" aria-live="polite"><span>完成時の高さ・概算</span><strong>約 <output id="height-total">44.1</output><small> mm</small></strong><p id="height-cm">約4.4cm / 公称12mmの足を仮定</p></div>
+          <label class="e-height-select" for="height-condition">ゴム足の高さの条件 <select id="height-condition"><option value="nominal">公称12mmで見る</option><option value="loaded">荷重時11mmを仮定する</option></select></label>
+          <div id="height-diagram" class="e-height-diagram"></div>
+          <p class="e-size-caption">片手分の側面模式図。縦は寸法に比例、横の位置は模式表現です。条件の切替はこの寸法図だけに反映し、3Dは公称12mmの足を表示します。</p>
+        </div>
+        <div class="e-size-breakdown">
+          <h3>下から積み上げると</h3>
+          <p>キーを押していない状態。トップより上の高さには、スイッチとキーキャップの重なりを含みます。</p>
+          <table class="e-height-table"><caption class="e-sr-only">完成時の高さの内訳</caption><thead><tr><th scope="col">場所</th><th scope="col">厚さ・間隔</th><th scope="col">寸法の状態</th></tr></thead><tbody>
+            <tr><th scope="row">ゴム足</th><td id="height-foot">12.0mm</td><td>製品・圧縮量は未確定</td></tr>
+            <tr><th scope="row">ボトム基板</th><td>1.6mm</td><td>板厚の仮定</td></tr>
+            <tr><th scope="row">ボトム上面 → メイン下面</th><td>15.0mm</td><td>現在の設計条件</td></tr>
+            <tr><th scope="row">メイン基板</th><td>1.6mm</td><td>板厚の仮定</td></tr>
+            <tr><th scope="row">メイン上面 → トップ下面</th><td>3.4mm</td><td>表示用の仮定</td></tr>
+            <tr><th scope="row">トッププレート</th><td>1.6mm</td><td>板厚の仮定</td></tr>
+            <tr><th scope="row">トップ上面 → キー上面</th><td id="height-over-plate">8.9mm</td><td>キー形状はイメージ</td></tr>
+          </tbody></table>
+          <p class="e-height-formula" id="height-formula">12.0 + 1.6 + 15.0 + 1.6 + 3.4 + 1.6 + 8.9 ≈ 44.1mm</p>
+          <dl class="e-size-facts">
+            <div><dt>片手の基板サイズ（幅 × 奥行き）</dt><dd id="board-dimensions">145.35 × 107.25mm</dd></div>
+            <div><dt>ボトム下面 → トップ上面</dt><dd id="height-stack">23.2mm</dd></div>
+            <div><dt>足を除いた高さ（ボトム下面 → キー上面）</dt><dd id="height-body">32.1mm</dd></div>
+            <div><dt>電池ケースの高さ（BS-24-B4AA014）</dt><dd>8.6mm</dd></div>
+            <div><dt>電池ケース下面 → 机</dt><dd id="height-clearance">3.4mm</dd></div>
+            <div><dt>ケースを9mmで見込んだ場合の隙間</dt><dd id="height-conservative">3.0mm</dd></div>
+          </dl>
+        </div>
+      </div>
+      <p class="e-size-note"><b>約44mmは、現在の3Dモデルの条件による概算です。</b>キーキャップ・スイッチ・板厚・スペーサー・ゴム足の選定で変わります。基板の幅・奥行きはCAD外形、電池ケース8.6mmは部品の公称寸法です。分解表示で離した距離や開いたふたは高さに含めません。外装ケースはこの見積もりに含めていません。</p>
     </section>
     <section class="e-parts-section e-wrap" id="parts"><div class="e-parts-heading"><div><p class="eyebrow">WHAT GOES WHERE</p><h2>使用部品と、取り付ける場所。</h2><p>数量は左右1セット分。部品を選ぶと3Dの該当箇所へ移動します。</p></div><label class="e-search"><span>部品を探す</span><input id="parts-search" type="search" placeholder="電池、XIAO、コンデンサー…" autocomplete="off"></label></div><div class="e-parts-tools"><div class="e-filters" aria-label="部品の分類"><button data-category="all" aria-pressed="true">すべて</button><button data-category="keys" aria-pressed="false">キーまわり</button><button data-category="power" aria-pressed="false">無線・電源</button><button data-category="connectors" aria-pressed="false">基板間接続</button><button data-category="hardware" aria-pressed="false">固定・足</button></div><p id="parts-count" role="status"></p></div><div class="e-parts-notice"><b>JLCPCBでの実装について</b><p>電池ケースC7525448はSMT実装部品として登録を確認済み。ほかの部品はSMT形状でも、全BOMの在庫・型番・両面実装・持込条件の照合が残っています。電池・キーキャップ・スイッチの差し込みや機械部品の取り付けは別工程です。</p></div><div id="parts-grid" class="e-parts-grid"></div><p id="parts-empty" class="e-empty" hidden>一致する部品が見つかりません。「すべて」に戻すか、検索語を変えてみてください。</p></section>
     <section class="e-bottom-note e-wrap"><div><p class="eyebrow">DESIGN SNAPSHOT / 2026.11.15</p><h2>組み立ての前に、つながりも確認。</h2><p>詳しいピン対応・電源経路・取り付け手順は、組み立てガイドへ。BLE実通信、電源の過渡応答、電池寿命と現物嵌合は未検証です。</p></div><a class="button primary" href="index.html">組み立てガイドを開く →</a></section>
