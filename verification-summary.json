@@ -1,0 +1,25 @@
+{
+  "design_snapshot_date": "2026-11-15",
+  "checked_at_utc": "2026-11-15T04:13:16.518655+00:00",
+  "static_checks_passed": 3242,
+  "static_verification_passed": true,
+  "electrical_boards": 4,
+  "mechanical_plates": 2,
+  "erc_violations": 0,
+  "drc_violations": 0,
+  "unconnected_items": 0,
+  "schematic_mismatches": 0,
+  "mounting_holes": {
+    "count": 36,
+    "top_bottom_screw_drill_mm": 2.2,
+    "main_spacer_passage_mm": 4.4,
+    "assumed_spacer_outer_diameter_mm": 4
+  },
+  "note": "Ideal matrix/copper connectivity and static mechanical checks; not BLE, analog power or hardware testing.",
+  "unverified": [
+    "BLE/dongle firmware build and over-the-air operation",
+    "analog boost startup, stability, ripple and USB transitions",
+    "actual cell current, usable capacity and lifetime",
+    "manufactured assembly and switch contact bounce"
+  ]
+}

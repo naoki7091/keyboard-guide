@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 355" role="img" aria-label="トップとボトムはM2ねじ、メインは外径4mmのスペーサーを通す断面模式図">
+<rect width="1000" height="355" rx="16" fill="#f4f5ed"/>
+<g font-family="Meiryo,Noto Sans JP,sans-serif" fill="#294b3a">
+<text x="28" y="35" font-size="22">ねじは上下から。スペーサーはメインを貫通。</text>
+<text x="28" y="59" font-size="13">断面模式図。穴中心は6か所とも全層同じ。寸法に比例した図ではありません。</text>
+<path d="M210 100H475 M491 100H720 M210 280H475 M491 280H720" stroke="#78926d" stroke-width="12"/>
+<path d="M210 161H461 M505 161H720" stroke="#255242" stroke-width="12"/>
+<rect x="467" y="106" width="32" height="168" fill="#d4ba78" stroke="#a98e4f"/>
+<path d="M483 87V128 M483 253V293" stroke="#5d6760" stroke-width="9"/>
+<rect x="469" y="81" width="28" height="10" rx="3" fill="#687469"/>
+<rect x="469" y="292" width="28" height="10" rx="3" fill="#687469"/>
+<path d="M476 110l14 8m-14 1 14 8m-14 135 14-8m-14 16 14-8" stroke="#b4bab0" stroke-width="2"/>
+<g font-size="15"><text x="32" y="105">トップ：φ2.2mm</text><text x="32" y="166">メイン：φ4.4mm</text><text x="32" y="285">ボトム：φ2.2mm</text></g>
+<path d="M507 211H650" stroke="#a98e4f"/><text x="661" y="207" font-size="14">外径4mmスペーサー</text><text x="661" y="230" font-size="13">ねじ山はスペーサー側（M2）</text>
+<text x="735" y="107" font-size="13">M2ねじを上から</text><text x="735" y="285" font-size="13">M2ねじを下から</text>
+<text x="30" y="335" font-size="13">メイン下面〜ボトム上面は15mmが目標。スペーサー全長はトップ厚とスイッチ保持高さを確定後に選定します。</text>
+</g></svg>

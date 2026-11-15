@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="実際のKiCad設計に基づく、分割無線キーボードの完成イメージ・3層構造・基板接続と組み立てガイド。">
+  <title>無線キーボード｜構造と組み立てガイド</title>
+  <link rel="canonical" href="https://naoki7091.github.io/keyboard-guide/">
+  <meta property="og:title" content="無線キーボード｜構造と組み立てガイド">
+  <meta property="og:description" content="分割キーボードの完成イメージ、3層構造、電池ケースと組み立て手順。">
+  <meta property="og:url" content="https://naoki7091.github.io/keyboard-guide/">
+  <meta property="og:type" content="website">
+  <link rel="stylesheet" href="styles.css">
+  <script src="design-data.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#layers">構造図へ移動</a>
+  <header class="site-header">
+    <a class="brand" href="#home"><span class="brand-mark" aria-hidden="true">▦</span> SPLIT / WIRELESS <span class="brand-sub">DESIGN NOTES</span></a>
+    <nav aria-label="ページ内ナビゲーション"><a href="#layers">層をみる</a><a href="#boards">基板をみる</a><a href="#connection">接続する</a><a href="#assembly">組み立てる</a></nav>
+    <button class="quiet print" type="button" id="print-guide">印刷</button>
+  </header>
+  <main id="home">
+    <section class="hero section-shell">
+      <div class="hero-copy"><p class="eyebrow">YOUR KEYBOARD, LAYER BY LAYER</p><h1>重ねて、つなぐ。<br>無線キーボードの<br><span>全体像。</span></h1><p class="intro">キーはメインへ。電池とマイコンはボトムへ。<br>いまの設計を、完成形から組み立てまで見渡すガイドです。</p><div class="hero-actions"><a class="button primary" href="#layers">3層の構造をみる <span aria-hidden="true">↘</span></a><a class="text-link" href="#assembly">組み立て手順へ →</a></div><p class="small muted">設計スナップショット：2026.11.15 <span class="dot">·</span> 公開用ガイド</p></div>
+      <div class="hero-art"><div class="art-caption"><span class="status-dot"></span> 現在の配置に基づく完成イメージ <span>01 / 03</span></div><div id="hero-keyboard"></div><div class="hero-specs"><div><strong>63<span>keys</span></strong><small>左29 / 右34</small></div><div><strong>3<span>layers</span></strong><small>トップ・メイン・ボトム</small></div><div><strong>145.35<span>×107.25 mm</span></strong><small>左右それぞれの基板外形</small></div></div><p class="small muted">外装・キーキャップの色と形は説明用。外装ケース、スタビライザーの適合、ファームウェアは未確定です。</p></div>
+    </section>
+    <div class="notice section-shell"><span class="note-tag">この資料の見方</span><p><b>配置・配線は実際のKiCadデータから表示。</b> 分解図は仕組みを伝える模式図です。基板の間隔は15mmを基準とし、無線通信・電源の実動作と現物の嵌合は、今後確認する段階です。</p></div>
+
+    <section class="section-shell chapter" id="layers">
+      <div class="section-heading"><div><p class="eyebrow">01 / THE STACK</p><h2>3枚でできる、ひとつの構造。</h2></div><p>層を選ぶと、その役割と実装する面がわかります。<br>キーキャップは3枚の構造に加わる外装部品です。</p></div>
+      <div class="explorer-toolbar"><div class="segmented side-controls" role="group" aria-label="表示する左右"><button type="button" data-side="L" aria-pressed="true">左手 / 29 keys</button><button type="button" data-side="R" aria-pressed="false">右手 / 34 keys</button></div><label class="range-label" for="explode">重ねる <input id="explode" type="range" min="0" max="100" value="78"> 分解する <output id="explode-value" for="explode">78%</output></label></div>
+      <div class="explorer-grid"><div class="stack-stage"><div id="stack-view"></div><p class="stage-note">表示の開き具合は説明用です。実際のメイン下面〜ボトム上面は15mm。</p></div><aside class="layer-info"><div class="layer-list" role="group" aria-label="説明する層"><button type="button" data-layer="keys" aria-pressed="false"><span>＋</span> キーキャップ <small>外装</small></button><button type="button" data-layer="top" aria-pressed="false"><span>01</span> トッププレート <small>保持</small></button><button type="button" data-layer="main" aria-pressed="false"><span>02</span> メイン基板 <small>キー入力</small></button><button type="button" data-layer="bottom" aria-pressed="true"><span>03</span> ボトム基板 <small>電源・無線</small></button></div><div id="layer-detail" aria-live="polite"></div></aside></div>
+      <div class="dimension-strip"><div><span>基板の間隔</span><b>15 mm</b><small>向かい合う表面どうし</small></div><div><span>コネクタ挿入量</span><b>4.178 mm</b><small>指定部品＋15mm間隔の計算値</small></div><div><span>机までの有効な足の高さ</span><b>11 mm以上</b><small>荷重時。公称12mm程度のゴム足を仮定</small></div></div>
+    </section>
+
+    <section class="section-shell battery-service-section" id="mounting">
+      <div class="section-heading"><div><p class="eyebrow">MOUNTING / SAME SIX CENTRES</p><h2>メインには、スペーサーを通す。</h2></div><p>トップ・ボトムはφ2.2mmのM2ねじ穴。<br>メインは外径4mmを通すφ4.4mm穴です。</p></div>
+      <img class="service-image" src="assets/mounting-section.svg" alt="外径4mmの連続スペーサーをメイン基板へ通し、トップとボトムからM2ねじで固定する断面模式図。" loading="lazy">
+      <p class="small muted">穴中心は6か所すべて維持。ねじ山はスペーサー側にあり、FR4へ直接ねじを切る構成ではありません。15mmはメイン〜ボトムの面間隔です。スペーサー全長・ねじ長はプレート厚とスイッチ高さを決めて選定します。</p>
+    </section>
+    <section class="section-shell battery-service-section" id="battery-service">
+      <div class="section-heading"><div><p class="eyebrow">BATTERY SERVICE / INTEGRATED LID</p><h2>ふた付きの部品で、裏から交換。</h2></div><p>CR2450用 MYOUNG BS-24-B4AA014。<br>基板を外さず、ケースのふたを回します。</p></div>
+      <img class="service-image" src="assets/battery-service.svg" alt="左右ボトムを机側から見た、一体型電池ケースと6か所のM2通し穴。ケース高さ8.6mm、ゴム足は荷重時11mm以上。" loading="lazy">
+      <div class="service-details"><p><b>部品</b>：ふた付き一体型のSMT電池ケース、JLCPCB番号 C7525448。別体カバー・H7/H8の穴・カバー用ねじは不要です。</p><p><b>高さ</b>：本体φ29.5mm、高さ8.6mm。検査では9mmの包絡とし、足は公称12mm程度・荷重時11mm以上を仮定します。</p><p><b>交換</b>：電源OFF・USBを外す → 裏返す → ふたをOPEN方向に回す → CR2450を極性どおりに交換 → ふたを閉じる。実物の嵌合と足の圧縮は未確認です。</p></div>
+      <div class="hero-actions"><button class="button primary" id="view-battery-bottom" type="button">B面の電池配置をみる ↓</button><a class="text-link" href="https://jlcpcb.com/partdetail/MYOUNG-BS_24B4AA014/C7525448">JLCPCBの部品ページ ↗</a><a class="text-link" href="https://datasheet.lcsc.com/datasheet/pdf/498f281853bc9292439f6ff000b89928.pdf?productCode=C7525448">メーカー寸法図 ↗</a></div>
+      <details><summary>実際の部品とフットプリントの根拠を見る</summary><img class="service-model" src="https://assets.lcsc.com/images/lcsc/900x900/20230903_MYOUNG-BS-24-B4AA014_C7525448_front.jpg" referrerpolicy="no-referrer" alt="MYOUNG製CR2450ケースと、取り外した一体型のふた。LCSCの商品写真。" loading="lazy"><p class="small muted">写真出典：<a href="https://www.lcsc.com/product-detail/C7525448.html">LCSC / MYOUNG製品ページ</a>。メーカー推奨PCBランドは3.4×3.6mm、中心間31.1mm。寸法図 MY-CP-0246 A/0 からKiCadフットプリントを作成しました。3D表示は外形確認用の簡略モデルです。発注時に在庫とふたの同梱・実装後の扱いを確認します。</p></details>
+    </section>
+
+    <section class="chapter board-chapter" id="boards"><div class="section-shell">
+      <div class="section-heading"><div><p class="eyebrow">02 / READ THE PCB</p><h2>部品の位置から、設計を読む。</h2></div><p>部品やキーを選択すると、その役割を表示。<br>細い線まで、現在のPCBから読み出しています。</p></div>
+      <div class="board-toolbar"><div class="segmented" role="group" aria-label="表示する基板"><button type="button" data-board="main" aria-pressed="false">メイン</button><button type="button" data-board="bottom" aria-pressed="true">ボトム</button></div><div class="board-options"><label>部品面 <select id="component-side"><option value="all">両面を透視</option><option value="F">F面・内側</option><option value="B">B面・机側</option></select></label><label>配線の表示 <select id="trace-focus"><option value="all">全配線</option><option value="power" selected>電池からBATへの電源経路</option><option value="gnd">GNDとベタ銅箔</option></select></label><label>銅箔面 <select id="copper-side"><option value="all">F面＋B面</option><option value="F">F面のみ</option><option value="B">B面のみ</option></select></label><label class="check"><input type="checkbox" id="show-traces" checked> 配線を表示</label><button type="button" class="quiet" id="clear-selection">選択を解除</button></div></div>
+      <div class="board-grid"><div class="pcb-stage"><div id="pcb-view"></div><div class="legend"><span><i class="legend-f"></i>F.Cu 配線</span><span><i class="legend-b"></i>B.Cu 配線</span><span><i class="legend-power"></i>電池→昇圧→BAT</span><span><i class="legend-gnd"></i>GND配線・ベタ銅箔</span><span><i class="legend-rf"></i>アンテナの銅箔禁止領域</span></div><p class="small muted" id="board-orientation">上から透視した座標です。電源表示では実際の配線を部品の上に透視表示します。</p><div id="power-connection-note" class="power-connection-note" aria-live="polite"></div></div><aside class="component-info"><p class="eyebrow">COMPONENT INSPECTOR</p><div id="component-detail" aria-live="polite"></div><label class="select-label" for="component-select">部品名から選ぶ<select id="component-select"></select></label><div class="orientation-note"><b>実装する面に注意</b><p>メインのソケットは<b>B面・下向き</b>。ボトムのマイコンは<b>F面・上向き</b>、電池BT1は<b>B面・机側</b>です。</p></div></aside></div>
+      <p class="source-note">図は <code>musen/main</code> と <code>musen/bottom</code> の実配置・パッド・配線から生成。B面の線も上からの透視で表示し、左右を反転していません。</p>
+    </div></section>
+
+    <section class="chapter section-shell" id="connection">
+      <div class="section-heading"><div><p class="eyebrow">03 / MAKE THE CONNECTION</p><h2>2本のコネクタで、上下をつなぐ。</h2></div><p>J50同士、J51同士を、同じ番号で対応させます。<br>電池・USBの電源回路はボトム側で完結します。</p></div>
+      <div class="connector-heading"><div class="segmented" role="group" aria-label="調べるコネクタ"><button type="button" data-connector="J50" aria-pressed="true">J50 / 列信号</button><button type="button" data-connector="J51" aria-pressed="false">J51 / 行・Reset</button></div><p id="connector-location" class="small"></p></div>
+      <div id="connector-view" class="connector-stage"></div>
+      <div class="pin-explorer"><div><p class="eyebrow">PIN SELECTOR — 番号を選択</p><div class="pin-buttons" id="pin-buttons" role="group" aria-label="調べる端子番号"></div></div><div class="pin-detail" id="pin-detail" aria-live="polite"></div></div>
+      <div class="connector-notes"><div><p class="eyebrow">MAIN / 下向きのメス側</p><h3>SSW-112-01-G-S</h3><p>高さ8.51mm。メインB面に実装します。</p></div><div><p class="eyebrow">BOTTOM / 上向きのオス側</p><h3>MTSW-112-08-G-S-320</h3><p>ボディ2.54mm、ポスト8.128mm。ボトムF面に実装します。</p></div><div><p class="eyebrow">FIT / 指定長さが必要</p><h3>短い汎用ヘッダーに注意</h3><p>15mmの間隔では短いピンは届きません。指定品の挿入量は4.178mm、メーカー範囲は3.68〜6.35mmです。</p></div></div>
+      <details class="pin-table-detail"><summary>全24端子の対応表を見る</summary><div class="table-scroll"><table><thead><tr><th>番号</th><th>J50 メイン → ボトム</th><th>J51 メイン → ボトム</th></tr></thead><tbody id="pin-table"></tbody></table></div></details>
+    </section>
+
+    <section class="chapter assembly-chapter" id="assembly"><div class="section-shell">
+      <div class="section-heading"><div><p class="eyebrow">04 / ASSEMBLY SEQUENCE</p><h2>下から準備して、平行に重ねる。</h2></div><p>部品実装と、層を重ねる順序を分けた工程案です。<br>上面プレートの最終設計・現物合わせは別途必要です。</p></div>
+      <div class="assembly-grid"><ol id="step-list" class="step-list" aria-label="組み立て工程"></ol><div class="step-panel"><div class="step-meta"><span id="step-counter"></span><span>ASSEMBLY GUIDE</span></div><div id="step-diagram"></div><div id="step-copy" aria-live="polite"></div><div class="step-actions"><button type="button" class="button secondary" id="prev-step">← 前の工程</button><button type="button" class="button primary" id="next-step">次の工程 →</button></div></div></div>
+      <div class="assembly-reminders"><p><b>電池交換</b>　机側から一体型ケースのふたをOPEN方向に回します。メイン・ボトム・トップは分解しません。</p><p><b>下面の高さ</b>　ケースは公称8.6mm。ゴム足は荷重時11mm以上、公称12mm程度を見込みます。</p><p><b>外装の残作業</b>　部品の実物嵌合と足の圧縮、USB開口、2Uスタビライザーの型番とトップ開口への適合は未確認です。</p></div>
+      <div class="print-steps" id="print-steps"></div>
+    </div></section>
+
+    <section class="chapter section-shell" id="power"><div class="section-heading"><div><p class="eyebrow">05 / SIGNAL & POWER</p><h2>キーの信号と、電源の通り道。</h2></div></div><div class="flow-columns"><div><h3>入力はメインから、無線はボトムから。</h3><div class="flow-line"><span>キー＋ダイオード<small>メイン</small></span><b>→</b><span>J50 / J51<small>列7本・行5本</small></span><b>→</b><span>XIAO Plus<small>ボトム</small></span></div><p>左右はそれぞれ電池で動かす構想です。左右間のTRRSケーブルは使わず、左右の無線入力をUSBドングルへ集めます。<b>BLE・ドングルのファームウェアと実通信は未検証。</b></p></div><div><h3>一次電池の電源は、ボトム内で完結。</h3><div class="power-chain"><span>CR2450</span><b>→</b><span>SW40</span><b>→</b><span>R40 / 22Ω</span><b>→</b><span>D40 / BAS116</span><b>→</b><span>TPS610995 / 3.6V</span><b>→</b><span>LM66100</span><b>→</b><span>XIAO BAT</span></div><p>USB接続時はVBUSでLM66100を無効化する設計。電池側のダイオードと合わせて逆流を抑える構成ですが、起動・USB切替・逆流量・電池寿命の実測は残っています。<b>CR2450は充電する構成ではありません。</b></p></div></div></section>
+
+    <section class="verification section-shell" id="files"><div><p class="eyebrow">06 / VERIFIED & STILL TO DO</p><h2>確かめたこと。これから確かめること。</h2><div class="verification-stats" id="verification-stats"></div><p>左右メイン＋左右ボトムの回路図・PCBを照合し、さらに左右トップを検査。ERC・DRC・未配線・回路図との不一致は0件。元プロジェクトから継承した無効チェックは、検証レポートに記録されています。</p><p class="small muted">確認済み：理想キー走査、上下端子の対応、元のキー位置・外形・固定穴、寸法上の部品クリアランス。未確認：BLE実通信、電源の過渡応答、一次電池への逆流の実測、電池寿命、現物の嵌合とチャタリング。</p></div><div class="file-list"><h3>設計条件と参考資料</h3>
+      <a href="assets/mounting-section.svg">スペーサーと固定穴の断面図 <span>↗</span></a>
+      <a href="assets/battery-service.svg">電池ケース・足の配置図 <span>↗</span></a>
+      <a href="verification-summary.json">検証結果の概要 <span>↗</span></a>
+      <a href="https://jlcpcb.com/partdetail/MYOUNG-BS_24B4AA014/C7525448">電池ケースの部品情報 <span>↗</span></a>
+      <a href="https://github.com/naoki7091/keyboard-guide">ガイドのGitHubリポジトリ <span>↗</span></a>
+      <p class="small muted">このページは設計スナップショットの解説資料です。部品の適合・スペーサー全長・実動作には確認が残っています。</p>
+      </div></section>
+  </main>
+  <footer class="section-shell"><span>SPLIT / WIRELESS — ASSEMBLY NOTES</span><span>KiCad設計スナップショットに基づく資料 · 2026.11.15</span><a href="#home">先頭へ ↑</a></footer>
+  <noscript><p class="noscript">図の切り替えにはJavaScriptが必要です。本文と参考資料のリンクはそのまま読めます。</p></noscript>
+</body>
+</html>
