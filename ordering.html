@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Musen Compactの基板30枚と実装数量の整理。マイコンを左右1枚だけ実装する希望と、JLCPCBの通常の最低数量を比較。">
+  <meta name="theme-color" content="#237355">
+  <title>基板30枚と実装の頼み方｜MUSEN COMPACT</title>
+  <link rel="canonical" href="https://naoki7091.github.io/keyboard-guide/ordering.html">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="ordering.css">
+  <script defer src="ordering.js"></script>
+</head>
+<body>
+  <a class="skip-order" href="#comparison">数量の比較へ移動</a>
+  <header><a class="brand" href="index.html">MUSEN <b>COMPACT</b><span>63 KEYS / SPLIT WIRELESS</span></a><nav aria-label="ガイド"><a href="index.html">組み立て</a><a href="explorer.html">完成形・3D</a><a href="#comparison">数量を比較</a><a href="#inquiry">確認用の文面</a></nav></header>
+  <main>
+    <section class="hero wrap order-hero">
+      <p class="eyebrow">ORDER PLANNING / 2026.11.15 確認</p>
+      <h1>基板は30枚。<br>実装は、別の数量。</h1>
+      <p class="lead">トップ・メイン・ボトムを左右各5枚ずつ製造すると、6設計 × 5枚 = <b>30枚</b>です。<br>希望は、共通部品を全数実装し、マイコンだけ左1枚・右1枚に載せる構成。</p>
+      <div class="order-callout"><strong>「各5枚のうち1枚だけマイコン実装」は、JLCPCBへの個別確認が必要です。</strong><p>公表されているPCBAの注文数量は通常2枚から。公開手順では、同じ5枚を「マイコンあり1枚／なし4枚」に分ける受付方法や、別BOMの実装ジョブで製造ロットを共用できるかを確認できませんでした。希望構成を、通常の注文で確実に指定できる状態とは扱っていません。</p><p class="note">仕様によって最低数量は変わります。Economicでは色・板厚・表面処理の組み合わせで5枚からになる条件もあります。<a href="https://jlcpcb.com/capabilities/pcb-assembly-capabilities">公式の実装能力表</a>・<a href="https://jlcpcb.com/blog/reduce-pcb-assembly-cost-prototype">5枚製造／一部実装の説明</a></p></div>
+    </section>
+
+    <section class="section pale" id="comparison"><div class="wrap">
+      <p class="eyebrow">01 / COMPARE QUANTITIES</p><h2>どの板に、何枚分を載せるか。</h2>
+      <div class="controls"><label for="order-scenario">構成 <select id="order-scenario"><option value="requested">希望：ボトム各1枚だけマイコンあり</option><option value="minimum">比較：ボトム各2枚を全実装、残りは裸基板</option><option value="all">比較：ボトム各5枚を全実装</option></select></label></div>
+      <p class="note">3案とも、メインは左右各5枚に共通部品を実装する想定です。数量の比較であり、見積もり・発注データではありません。</p>
+      <div id="order-result" aria-live="polite" aria-atomic="true">
+        <div class="stats order-stats"><div><strong id="pcb-total">30<span>枚</span></strong><small>製造する基板 · トップ10枚を含む</small></div><div><strong id="assembly-total">20<span>枚</span></strong><small>何らかの部品を実装する板</small></div><div><strong id="mcu-total">2<span>個</span></strong><small>本体のボトムに載せるマイコン</small></div></div>
+        <p id="scenario-status" class="scenario-status pending">希望構成・受付方法は個別確認</p>
+        <p id="scenario-note">ボトムは各5枚すべてに共通部品、うち各1枚にXIAOを実装。残る各4枚はXIAOのみ省略します。同一製造ロット内でこの区別を受け付けるかは未確認です。</p>
+        <div class="table-scroll"><table class="quantity-table"><caption>6種類の基板ごとの製造・実装数量</caption><thead><tr><th scope="col">基板</th><th scope="col">製造</th><th scope="col">共通部品の実装</th><th scope="col">マイコン</th><th scope="col">残りの板</th></tr></thead><tbody id="order-rows">
+          <tr><th scope="row">左 / TOP</th><td>5枚</td><td>0枚</td><td>対象外</td><td>5枚とも部品なし</td></tr>
+          <tr><th scope="row">左 / MAIN</th><td>5枚</td><td>5枚</td><td>対象外</td><td>全数に共通部品</td></tr>
+          <tr><th scope="row">左 / BOTTOM</th><td>5枚</td><td>5枚</td><td>1枚に実装</td><td>4枚はマイコンのみ省略</td></tr>
+          <tr><th scope="row">右 / TOP</th><td>5枚</td><td>0枚</td><td>対象外</td><td>5枚とも部品なし</td></tr>
+          <tr><th scope="row">右 / MAIN</th><td>5枚</td><td>5枚</td><td>対象外</td><td>全数に共通部品</td></tr>
+          <tr><th scope="row">右 / BOTTOM</th><td>5枚</td><td>5枚</td><td>1枚に実装</td><td>4枚はマイコンのみ省略</td></tr>
+        </tbody></table></div>
+        <div class="lot-key"><span><i class="common-dot"></i>共通部品</span><span><i class="mcu-dot"></i>マイコンあり</span><span><i class="bare-dot"></i>部品なし</span></div>
+        <div id="bottom-lots" class="bottom-lots" aria-label="左右ボトム各5枚の内訳"></div>
+      </div>
+      <p class="note">マイコンは<b>ボトム</b>に載ります。トップは部品なし。メイン全10枚への実装では、キーソケットは左29 × 5 ＋ 右34 × 5 = <b>315個</b>、キーマトリックス用ダイオードも<b>315個</b>です。</p>
+      <p class="note">受信ドングルには別途XIAO nRF52840 Plusを1個使います。上のマイコン数と30枚の基板には含めていません。希望構成で用意する本体2個＋ドングル1個は計3個です。実装工場が要求する予備・ロス分の購入数量は別途確認します。</p>
+    </div></section>
+
+    <section class="section wrap" id="conditions"><p class="eyebrow">02 / WHAT THE RULES MEAN</p><h2>最低数量と、実装内容の違い。</h2>
+      <div class="layer-grid">
+        <article><span>確認済み</span><h3>5枚製造、2枚実装は可能</h3><p>公式には裸基板を最低5枚製造し、うち2枚だけに実装する例があります。その場合、残る3枚は他の共通部品も実装されません。</p><a href="https://jlcpcb.com/blog/reduce-pcb-assembly-cost-prototype">公式の数量説明 ↗</a></article>
+        <article><span>要個別確認</span><h3>同じ板で、1枚だけ部品を追加</h3><p>DNP（指定部品の未実装）は選べますが、1注文の板を個体別に異なるBOMへ分けられる根拠は見つかりませんでした。希望の1＋4分割は受付方法を確認します。</p><a href="https://jlcpcb.com/help/article/component-matching-guidelines-for-pcba-orders">部品選択・DNPの手順 ↗</a></article>
+        <article><span>数量計算に注意</span><h3>左右の1枚ずつは別設計</h3><p>左1枚＋右1枚を、そのまま同一設計の最低2枚として数えられるとは限りません。左右を面付けしても枚数はパネル単位となるため、1パネルで条件を満たすとは判断しません。</p><a href="https://jlcpcb.com/help/article/panelizing-your-pcb-for-assembly">公式の面付け説明 ↗</a></article>
+      </div>
+      <p>通常の最低2枚に合わせてボトムを左右各2枚ずつ全実装すると、マイコンは本体用に<b>計4個</b>になります。ただし残り各3枚を「マイコン以外は実装済み」にしたい場合は、さらに別BOMでの取り扱いが必要です。</p>
+      <p>実装あり・なしを別注文に分けると、製造の最低ロットや段取り費が重複する可能性があります。<b>同じ5枚を複数の実装注文で使い回せる前提で、30枚に収まるとは計算しません。</b>マイコン2個だけを目指すなら、まず希望構成をそのまま提示し、個別対応の可否と総額を確認するのが順序です。</p>
+    </section>
+
+    <section class="section pale" id="scope"><div class="wrap"><p class="eyebrow">03 / ASSEMBLY SCOPE</p><h2>「共通部品を全部」の範囲も確認する。</h2>
+      <div class="table-scroll"><table><thead><tr><th scope="col">実装先</th><th scope="col">対象・条件</th></tr></thead><tbody>
+        <tr><th scope="row">メイン</th><td>キーソケット、ダイオード、リセットスイッチ、FFCなどのSMT部品。登録部品との型番一致・在庫・回転を最終BOM/CPLで照合します。</td></tr>
+        <tr><th scope="row">ボトム</th><td>昇圧・電源分離IC、受動部品、FFC、電池ケースなど。F/B両面に部品があるため、実装面と工程を確認します。</td></tr>
+        <tr><th scope="row">XIAO Plus</th><td>型番102010672。SMT登録はありますが、JLCPCBの登録ごとにサービス条件が異なります。候補C9900215637はStandard Only・X線検査必須の表示です。下面の追加接点を含むランドと実装可否を照合します。<a href="https://jlcpcb.com/partdetail/JLCPCBAssembly-102010672/C9900215637">部品登録</a>・<a href="https://www.seeedstudio.com/Seeed-Studio-XIAO-nRF52840-Plus-p-6359.html">メーカー仕様</a></td></tr>
+        <tr><th scope="row">別工程・未実装</th><td>SW40電源スイッチはTHT形状で、通常のSMTとは別の実装可否確認が必要です。代替ピンJ52/J53はDNP（初期状態では未実装）。FFCケーブル、電池、キースイッチ、キャップ、ねじ・足は組み立て工程です。</td></tr>
+      </tbody></table></div>
+      <p class="note">数量比較の「共通部品」は見積もり時の希望範囲です。全BOMの工場実装が承認済みという意味ではありません。最終BOM/CPL・部品調達・製造リリースは未確定です。</p><a href="index.html#interconnect">FFCと代替ピンの接続方法を見る →</a>
+    </div></section>
+
+    <section class="section wrap" id="inquiry"><p class="eyebrow">04 / READY TO ASK</p><h2>JLCPCBへ伝える希望を、そのまま。</h2><p>希望構成は固定で「マイコンあり1枚＋なし4枚／左右それぞれ」です。比較欄を切り替えても、この確認文は変わりません。コピーして問い合わせに使えます。</p>
+      <label class="inquiry-label" for="inquiry-text">英語の確認文</label>
+      <textarea id="inquiry-text" rows="19" readonly spellcheck="false">I am planning a split wireless keyboard with six different PCB designs: left/right TOP, MAIN, and BOTTOM.
+I would like to fabricate 5 boards of each design (30 bare PCBs in total).
+
+TOP L/R: no assembly.
+MAIN L/R: assemble the same common-component BOM on all 5 boards of each design.
+BOTTOM L/R: assemble the common power/FFC/battery-holder components on all 5 boards of each design, but mount the Seeed XIAO nRF52840 Plus (MPN 102010672) on ONLY 1 board of each design. The other 4 boards should omit ONLY the XIAO, with all other common components fitted.
+This means 2 mounted XIAO modules in total across the keyboard boards. A separate USB receiver module is outside this PCB order.
+
+1. Can you accept this exact 1-with-XIAO + 4-without-XIAO population split for EACH BOTTOM design, using the same 5-board fabrication lot?
+2. How is this handled given the usual minimum PCBA quantity of 2? Can a mixed-BOM or personalized assembly service accommodate it?
+3. Can one fabricated lot be allocated to multiple assembly variants/jobs, or would each variant require another minimum fabrication lot? Please specify the total fabrication and assembly quantities.
+4. Which service, setup fees, X-ray/inspection requirements, and additional module procurement or attrition quantities would apply?
+5. Please confirm assembly of the XIAO underside GPIO/BAT/RESET contacts, and quote any THT switch assembly separately.
+
+I have not placed an order yet. I am asking for feasibility and the required order workflow before finalizing Gerber/BOM/CPL files.</textarea>
+      <div class="copy-row"><button class="button" id="copy-inquiry" type="button">確認文をコピー</button><p id="copy-status" role="status">このページから問い合わせは送信されません。</p></div>
+      <details class="source-details"><summary>確認に使った公式資料</summary><ul>
+        <li><a href="https://jlcpcb.com/capabilities/pcb-assembly-capabilities">PCB Assembly Capabilities：数量・面・サービス条件</a></li>
+        <li><a href="https://jlcpcb.com/blog/reduce-pcb-assembly-cost-prototype">How to Reduce Prototype PCB Assembly Cost：製造5枚と一部実装の例</a></li>
+        <li><a href="https://jlcpcb.com/help/article/component-matching-guidelines-for-pcba-orders">Component Matching Guidelines：部品選択とDNP</a></li>
+        <li><a href="https://jlcpcb.com/help/article/common-bom-and-cpl-matching-issues-and-explanations">BOM/CPL：単板・面付けデータの扱い</a></li>
+        <li><a href="https://jlcpcb.com/help/article/jlcpcb-supported-personalized-services">Supported Personalized Services：個別対応と評価</a></li>
+      </ul></details>
+    </section>
+  </main>
+  <footer class="wrap">MUSEN COMPACT · 発注検討版 2026.11.15 <a href="index.html">構造・組み立てへ</a><a href="explorer.html">完成形を3Dで見る ↗</a><a href="https://github.com/naoki7091/keyboard-guide">GitHub</a></footer>
+  <noscript>初期表示は希望構成です。構成の比較とコピー補助にはJavaScriptが必要です。確認文は選択してコピーできます。</noscript>
+</body>
+</html>

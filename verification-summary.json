@@ -1,7 +1,7 @@
 {
   "design_snapshot_date": "2026-11-15",
-  "checked_at_utc": "2026-11-15T11:05:29.477094+00:00",
-  "static_checks_passed": 3114,
+  "checked_at_utc": "2026-11-15T12:48:36.309132+00:00",
+  "static_checks_passed": 4276,
   "static_verification_passed": true,
   "electrical_boards": 4,
   "mechanical_plates": 2,
@@ -14,6 +14,24 @@
     "top_bottom_screw_drill_mm": 2.2,
     "main_spacer_passage_mm": 4.4,
     "assumed_spacer_outer_diameter_mm": 4
+  },
+  "connection_options": [
+    "FFC J50+J51",
+    "direct-solder pins J52+J53"
+  ],
+  "alternative_pin_holes": 56,
+  "key_combinations_per_connection": {
+    "ffc": 10668,
+    "pins": 10668
+  },
+  "key_combinations_total": 21336,
+  "removable_pin_socket_selected": false,
+  "order_plan": {
+    "fabricated_boards": 30,
+    "designs": 6,
+    "boards_per_design": 5,
+    "requested_mounted_keyboard_mcus": 2,
+    "mixed_population_accepted": null
   },
   "variant": "musen_compact",
   "main_bottom_face_gap_mm": 4.5,
