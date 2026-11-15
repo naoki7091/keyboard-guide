@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="キーキャップ付きの完成形を360度回して、3層の構造と使用部品を確認できる無線分割キーボードの3Dガイド。">
+  <meta name="theme-color" content="#1b6952">
+  <title>完成形と使用部品を3Dで見る｜SPLIT WIRELESS</title>
+  <link rel="canonical" href="https://naoki7091.github.io/keyboard-guide/explorer.html">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="explorer.css">
+  <script src="design-data.js" defer></script>
+  <script src="explorer-data.js" defer></script>
+  <script src="explorer.bundle.js" defer></script>
+</head>
+<body class="explorer-page">
+  <a class="skip" href="#viewer">3Dビューへ移動</a>
+  <header class="e-header"><a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">▦</span> SPLIT / WIRELESS</a><nav aria-label="ページ内ナビゲーション"><a href="#viewer">3Dで見る</a><a href="#parts">使用部品</a><a href="index.html">組み立てガイドへ ↗</a></nav></header>
+  <main>
+    <section class="e-intro e-wrap"><div><p class="eyebrow">THE FINISHED KEYBOARD, INSIDE OUT</p><h1>完成形から、<br class="e-mobile-br">中の部品まで。</h1><p class="e-lead">キーキャップを付けた姿を、好きな角度から。<br>回して、裏返して、層ごとのつながりを見てみましょう。</p></div><div class="e-intro-facts"><span><b>63</b>keys / 左29・右34</span><span><b>3</b>枚のプレート・基板</span><span><b>360°</b>回転・拡大・部品選択</span></div></section>
+    <section class="e-workbench e-wrap" id="viewer" aria-label="キーボードの3Dビュー">
+      <div class="e-toolbar"><div class="e-segmented" aria-label="表示モード"><button data-mode="assembled" aria-pressed="true">完成形</button><button data-mode="exploded" aria-pressed="false">分解して見る</button><button data-mode="top" aria-pressed="false">トップ</button><button data-mode="main" aria-pressed="false">メイン</button><button data-mode="bottom" aria-pressed="false">ボトム</button></div><label class="e-side">表示する手 <select id="hand-select"><option value="both">左右セット</option><option value="L">左手だけ</option><option value="R">右手だけ</option></select></label></div>
+      <div class="e-view-grid">
+        <div class="e-stage-column"><div class="e-stage" id="stage-shell"><div class="e-stage-badge"><span class="e-live-dot"></span><span id="view-label">完成形 / 左右セット</span></div><div id="three-viewport" class="e-viewport"><img id="viewer-fallback" src="assets/explorer-fallback.svg" alt="左右のキーキャップ付き完成イメージ。読み込み後に3D表示へ切り替わります。"><p id="viewer-loading" role="status">3Dモデルを準備しています…</p></div><div class="e-camera-bar" aria-label="カメラの向き"><button data-view="iso" aria-pressed="true">斜め</button><button data-view="top" aria-pressed="false">真上</button><button data-view="bottom" aria-pressed="false">裏側</button><button data-view="front" aria-pressed="false">手前</button></div><div class="e-zoom-bar"><button id="zoom-in" aria-label="拡大する">＋</button><button id="zoom-out" aria-label="縮小する">−</button><button id="fit-view" aria-label="モデルを画面に収める">⛶</button><button id="fullscreen-view" aria-label="3Dビューを全画面にする">拡大表示</button></div></div><div class="e-gestures"><span><b>回転</b> ドラッグ / 指1本</span><span><b>拡大</b> ホイール / ピンチ</span><span><b>移動</b> 右ドラッグ / 指2本</span><button id="reset-view">初期位置に戻す ↺</button></div><p class="e-model-note">キー位置・基板外形・加工穴は現在のCADに基づきます。キーキャップ・部品の細部・色と材質はイメージです。WebGL対応のブラウザで操作できます。</p></div>
+        <aside class="e-controls" aria-label="表示設定と部品の説明"><section><div class="e-panel-title"><h2>重なりをほどく</h2><output id="explode-value">0%</output></div><label for="explode-3d" class="e-sr-only">層を離す量</label><input id="explode-3d" type="range" min="0" max="100" value="0"><div class="e-range-ends"><span>組み立てた状態</span><span>分解表示</span></div><p class="e-small">分解距離は説明用。メイン下面〜ボトム上面の設計間隔は15mmです。</p></section><section><h2>表示する層</h2><div class="e-layer-toggles"><label><input type="checkbox" data-layer="keys" checked><span class="e-swatch swatch-keys"></span>キー・スイッチ</label><label><input type="checkbox" data-layer="top" checked><span class="e-swatch swatch-top"></span>トップ</label><label><input type="checkbox" data-layer="main" checked><span class="e-swatch swatch-main"></span>メイン</label><label><input type="checkbox" data-layer="bottom" checked><span class="e-swatch swatch-bottom"></span>ボトム</label></div><label class="e-check"><input id="show-copper" type="checkbox" checked>配線・パッドも表示</label><label class="e-check"><input id="open-battery" type="checkbox">電池ケースのふたを開く</label><label class="e-check"><input id="auto-rotate" type="checkbox">ゆっくり回す</label></section><section class="e-inspector"><p class="eyebrow">SELECT A PART</p><div id="part-inspector" aria-live="polite"><h2>部品をタップしてみる</h2><p>キーや電池ケースなどを選ぶと、役割と取り付け位置を表示します。</p></div><button id="focus-selection" class="e-outline-button" disabled>選択した部品に寄る</button></section></aside>
+      </div>
+      <div class="e-shortcuts" aria-label="よく見る部品"><span>ここを見たい</span><button data-focus="battery-case">ふた付き電池ケース ↗</button><button data-focus="mcu">マイコン ↗</button><button data-focus="header-sockets">上下をつなぐ端子 ↗</button><button data-focus="key-sockets">キーソケット ↗</button></div>
+      <details class="e-dimensions"><summary>モデルの寸法条件と、まだ決まっていない部分</summary><p>各基板は145.35×107.25mm。メイン下面〜ボトム上面は15mm。表示用に基板・トップ厚を1.6mm、メイン上面〜トップ下面を3.4mmと仮定しています。連続スペーサーは外径4mm・表示上の全長20mmですが、実物の全長とねじ長はプレート厚・スイッチ保持高さを決めて選定します。キーキャップの形状・外装ケース・スタビライザーの適合・ゴム足の圧縮量も未確定です。</p><p>裏面の電池ケースはBS-24-B4AA014、高さ8.6mm。ふたを開いた状態は交換手順を説明するための模式表現です。3Dモデルは製造用CADや干渉検査用の精密モデルではありません。</p><p>キーボード操作：3Dビューにフォーカスして矢印キーで回転、＋/−で拡大縮小、Homeで初期位置へ。部品一覧からも部品を選べます。</p></details>
+    </section>
+    <section class="e-parts-section e-wrap" id="parts"><div class="e-parts-heading"><div><p class="eyebrow">WHAT GOES WHERE</p><h2>使用部品と、取り付ける場所。</h2><p>数量は左右1セット分。部品を選ぶと3Dの該当箇所へ移動します。</p></div><label class="e-search"><span>部品を探す</span><input id="parts-search" type="search" placeholder="電池、XIAO、コンデンサー…" autocomplete="off"></label></div><div class="e-parts-tools"><div class="e-filters" aria-label="部品の分類"><button data-category="all" aria-pressed="true">すべて</button><button data-category="keys" aria-pressed="false">キーまわり</button><button data-category="power" aria-pressed="false">無線・電源</button><button data-category="connectors" aria-pressed="false">基板間接続</button><button data-category="hardware" aria-pressed="false">固定・足</button></div><p id="parts-count" role="status"></p></div><div class="e-parts-notice"><b>JLCPCBでの実装について</b><p>電池ケースC7525448はSMT実装部品として登録を確認済み。ほかの部品はSMT形状でも、全BOMの在庫・型番・両面実装・持込条件の照合が残っています。電池・キーキャップ・スイッチの差し込みや機械部品の取り付けは別工程です。</p></div><div id="parts-grid" class="e-parts-grid"></div><p id="parts-empty" class="e-empty" hidden>一致する部品が見つかりません。「すべて」に戻すか、検索語を変えてみてください。</p></section>
+    <section class="e-bottom-note e-wrap"><div><p class="eyebrow">DESIGN SNAPSHOT / 2026.11.15</p><h2>組み立ての前に、つながりも確認。</h2><p>詳しいピン対応・電源経路・取り付け手順は、組み立てガイドへ。BLE実通信、電源の過渡応答、電池寿命と現物嵌合は未検証です。</p></div><a class="button primary" href="index.html">組み立てガイドを開く →</a></section>
+  </main>
+  <footer class="e-wrap"><span>SPLIT / WIRELESS — 3D & PARTS</span><a href="vendor/THREE-LICENSE.txt">3Dライブラリのライセンス</a><a href="#viewer">3Dビューへ戻る ↑</a></footer>
+  <noscript><p class="noscript">3D表示と部品一覧にはJavaScriptが必要です。<a href="index.html">本文と図で読める組み立てガイドへ</a>。</p></noscript>
+</body>
+</html>
