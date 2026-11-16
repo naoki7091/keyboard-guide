@@ -1,7 +1,7 @@
 {
-  "design_snapshot_date": "2026-11-15",
-  "checked_at_utc": "2026-11-15T12:48:36.309132+00:00",
-  "static_checks_passed": 4276,
+  "design_snapshot_date": "2026-11-16",
+  "checked_at_utc": "2026-11-15T15:22:23.982560+00:00",
+  "static_checks_passed": 8802,
   "static_verification_passed": true,
   "electrical_boards": 4,
   "mechanical_plates": 2,
@@ -27,11 +27,25 @@
   "key_combinations_total": 21336,
   "removable_pin_socket_selected": false,
   "order_plan": {
-    "fabricated_boards": 30,
-    "designs": 6,
-    "boards_per_design": 5,
-    "requested_mounted_keyboard_mcus": 2,
-    "mixed_population_accepted": null
+    "preferred_keyboard_sets": 1,
+    "preferred_fabricated_boards": 6,
+    "preferred_assembled_boards": 4,
+    "one_piece_service_quote_confirmed": false,
+    "jlc_fabricated_boards_at_5_per_design": 30,
+    "jlc_assembled_boards_at_2_per_electronic_design": 8,
+    "factory_keyboard_mcus": 0,
+    "manual_keyboard_mcus": 2,
+    "separate_receiver_mcus": 1
+  },
+  "mcu_mount": {
+    "type": "Conthrough plus auxiliary four-wire harness",
+    "factory_assembled": false,
+    "conthrough_part": "XB-3-3.5-7P",
+    "module_board_gap_mm": 3.5,
+    "contact_holes": 28,
+    "contact_drill_mm": 0.85,
+    "module_fixing_qualified": false,
+    "physical_contacts_tested": false
   },
   "variant": "musen_compact",
   "main_bottom_face_gap_mm": 4.5,
@@ -47,6 +61,7 @@
     "BLE over-the-air operation (three ARM firmware targets built separately)",
     "analog boost startup, stability, ripple and USB transitions",
     "actual cell current, usable capacity and lifetime",
-    "manufactured assembly and switch contact bounce"
+    "manufactured assembly and switch contact bounce",
+    "Conthrough contact retention, XIAO-side fixing and auxiliary harness fit"
   ]
 }
